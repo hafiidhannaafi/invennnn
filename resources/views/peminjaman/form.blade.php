@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
 
@@ -12,20 +15,86 @@
     </script>
 
     <script>
+        var next = 0
+        var notIn = []
         $(function() {
+            
             $(document).on('click', '.btn-add', function(e) {
                 e.preventDefault();
-                var controlForm = $(this).closest('.fvrduplicate'),
-                    currentEntry = $(this).parents('.entry:first'),
-                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-
-                newEntry.find('input').val('');
-
-                controlForm.find('.entry:not(:last) .btn-add')
-                    .removeClass('btn-add').addClass('btn-remove')
+                $('#btn'+next).removeClass('btn-add').addClass('btn-remove')
                     .removeClass('btn-success').addClass('btn-danger')
-                    .html('<i class="fa fa-minus" aria-hidden="true">-</i>');
+                    .html('<i class="fa fa-minus" aria-hidden="true">-</i>')
+
+                next++
+
+                $('#add-barang').append(`<div class="row entry my-2">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <select
+                                            onchange="barangTerpilih(this)"
+                                                class="form-control select2"
+                                                data-live-search="true" name="barangs_id[]" id="barangs_id${next}">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-5">
+                                        <input class="form-control form-control" value=" "
+                                            id="jumlah_pinjam[] "name="jumlah_pinjam[]" type="number"
+                                            placeholder=" jumlah item ">
+                                    </div>
+
+
+
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-success btn-sm btn-add" id="btn${next}">
+                                            <i class="fa fa-plus" aria-hidden="true">+</i>
+                                        </button>
+                                    </div>
+                                </div>`)
+                // var controlForm = $(this).closest('.fvrduplicate'),
+                //     currentEntry = $(this).parents('.entry:first'),
+                //     newEntry = $(currentEntry.clone()).appendTo(controlForm);
+                //     console.log(controlForm)
+
+                //     next++
+
+
+                // newEntry.find('select').removeAttr('id').attr('id','barangs_id'+next).removeAttr('data-select2-id').attr('data-select2-id','select2-data-barangs_id'+next);
+                // newEntry.find('option').remove()
+                // newEntry.find('select').remove();
+
+                $('#barangs_id'+next).select2({
+                theme: 'bootstrap-5',
+                cache: true,
+                placeholder: 'Pilih Barang',
+                ajax: {
+                    url: '{!! route("select.barang") !!}',
+                    dataType: 'json',
+                    delay: 400,
+                    data: function(params) {
+                        return {
+                            q: $.trim(params.term),
+                            id:notIn
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.spesifikasi,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                },
+            });
+
+                // controlForm.find('.entry:not(:last) .btn-add')
+                //     .removeClass('btn-add').addClass('btn-remove')
+                //     .removeClass('btn-success').addClass('btn-danger')
+                //     .html('<i class="fa fa-minus" aria-hidden="true">-</i>');
 
             }).on('click', '.btn-remove', function(e) {
                 $(this).closest('.entry').remove();
@@ -38,14 +107,73 @@
             $('#tgl_kembali').on('input', function() {
                 $('#tgl_pinjam').attr('max', this.value);
             });
+
+            
         });
     </script>
 
 
     <script>
-        $(function() {
-            $('.selectpicker').selectpicker();
-        });
+        function barangTerpilih(el) {
+            notIn = $("select[name='barangs_id[]']").map(function(){return $(this).val();}).get();
+            // console.log(notIn)
+        }
+
+        $(function () {
+
+            $('#barangs_id0').select2({
+                theme: 'bootstrap-5',
+                cache: true,
+                placeholder: 'Pilih Barang',
+                ajax: {
+                    url: '{!! route("select.barang") !!}',
+                    dataType: 'json',
+                    delay: 400,
+                    data: function(params) {
+                        return {
+                            q: $.trim(params.term),
+                            id:notIn
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.spesifikasi,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                },
+            });
+
+            $('#barangs_id1').select2({
+                theme: 'bootstrap-5',
+                cache: true,
+                placeholder: 'Pilih Barang',
+                ajax: {
+                    url: '{!! route("select.barang") !!}',
+                    dataType: 'json',
+                    delay: 400,
+                    data: function(params) {
+                        return {
+                            q: $.trim(params.term),
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.spesifikasi,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                },
+            });
+        })
     </script>
     <script>
         $(".js-example-diacritics").select2();
@@ -304,27 +432,14 @@
                                 <div class="row entry my-2">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            {{-- <select class="form-control selectpicker" id="select-country lstFruits" multiple="multiple" data-live-search="true" name="barangs_id" id="validationTooltip06" aria-label="Default select example"> --}}
                                             <select
-                                                class=" js-example-placeholder-single js-states form-control selectpicker"
-                                                data-live-search="true" name="barangs_id[]" id="barangs_id[]"
-                                                aria-label="Default select example">
-
-                                                {{-- <select class="form-select" name="barangs_id" id="validationTooltip06" aria-label="Default select example"> --}}
-                                                <option selected>Pilih Nama Barang</option>
-
-                                                @foreach ($inputbarang as $data)
-                                                    @if (($data->jenis_asets_id == 1 || $data->jenis_asets_id == 3 || $data->jenis_asets_id == 4) &&
-                                                        $data->jumlah > 0)
-                                                        <option value="{{ $data->id }}"> {{ $data->kode }} -
-                                                            {{ $data->jenis_barangs->jenis_barang }}
-                                                            {{ $data->spesifikasi }}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
+                                            onchange="barangTerpilih(this)"
+                                                class="form-control select2"
+                                                data-live-search="true" name="barangs_id[]" id="barangs_id0">
                                             </select>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-5">
                                         <input class="form-control form-control" value=" "
                                             id="jumlah_pinjam[] "name="jumlah_pinjam[]" type="number"
@@ -334,11 +449,13 @@
 
 
                                     <div class="col-md-2">
-                                        <button type="button" class="btn btn-success btn-sm btn-add">
+                                        <button type="button" class="btn btn-success btn-sm btn-add" id="btn0">
                                             <i class="fa fa-plus" aria-hidden="true">+</i>
                                         </button>
                                     </div>
                                 </div>
+
+                                <div id="add-barang"></div>
                             </div>
                         </div>
                     </div>

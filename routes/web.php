@@ -154,7 +154,7 @@ Route::get('/data-kepala', function () {
     return view('datakepala.index');
 });
 
-Route::get('/redirects',[HomeController::class,"index"]);
+Route::get('/redirects', [HomeController::class, "index"]);
 
 // Route::get('/redirects',[HomeController::class,"dashboardadmin"]);
 
@@ -184,7 +184,7 @@ Route::get('/data-kepala/hapus/{id}', 'App\Http\Controllers\UserController@hapus
 
 //DATA JENIS ASET
 Route::POST('inputjenisaset', 'App\Http\Controllers\DataJenisAsetController@inputjenisaset')->name('inputjenisaset');
-Route::get('/datajenisaset', [DataJenisAsetController::class, 'index']); 
+Route::get('/datajenisaset', [DataJenisAsetController::class, 'index']);
 Route::get('/datajenisaset/edit/{id}', 'App\Http\Controllers\DataJenisAsetController@editjenisaset')->name('editjenisaset');
 Route::post('/datajenisaset/update/{id}', 'App\Http\Controllers\DataJenisAsetController@updatejenisaset')->name('updatejenisaset');
 Route::get('/datajenisaset/hapusjenisaset/{id}', 'App\Http\Controllers\DataJenisAsetController@hapusjenisaset')->name('hapusjenisaset');
@@ -192,61 +192,61 @@ Route::get('/datajenisaset/hapusjenisaset/{id}', 'App\Http\Controllers\DataJenis
 
 //DATA ASAL PEROLEHAN
 Route::POST('inputasalperolehan', 'App\Http\Controllers\DataAsalPerolehanController@inputasalperolehan')->name('inputasalperolehan');
-Route::get('/dataasalperolehan', [DataAsalPerolehanController::class, 'index']); 
+Route::get('/dataasalperolehan', [DataAsalPerolehanController::class, 'index']);
 Route::get('/dataasalperolehan/edit/{id}', 'App\Http\Controllers\DataAsalPerolehanController@editasalperolehan')->name('editasalperolehan');
 Route::post('/dataasalperolehan/update/{id}', 'App\Http\Controllers\DataAsalPerolehanController@updateasalperolehan')->name('updateasalperolehan');
 Route::get('/dataasalperolehan/hapusasalperolehan/{id}', 'App\Http\Controllers\DataAsalPerolehanController@hapusasalperolehan')->name('hapusasalperolehan');
 
 //DATA SATUAN
 Route::POST('inputsatuan', 'App\Http\Controllers\DataSatuanController@inputsatuan')->name('inputsatuan');
-Route::get('/datasatuan', [DataSatuanController::class, 'index']); 
+Route::get('/datasatuan', [DataSatuanController::class, 'index']);
 Route::get('/datasatuan/edit/{id}', 'App\Http\Controllers\DataSatuanController@editsatuan')->name('editsatuan');
 Route::post('/datasatuan/update/{id}', 'App\Http\Controllers\DataSatuanController@updatesatuan')->name('updatesatuan');
 Route::get('/datasatuan/hapussatuan/{id}', 'App\Http\Controllers\DataSatuanController@hapussatuan')->name('hapussatuan');
 
 //DATA Jenis Barang
 Route::POST('inputjenisbarang', 'App\Http\Controllers\JenisBarangController@inputjenisbarang')->name('inputjenisbarang');
-Route::get('/jenisbarang', [JenisBarangController::class, 'index']); 
+Route::get('/jenisbarang', [JenisBarangController::class, 'index']);
 Route::get('/jenisbarang/edit/{id}', 'App\Http\Controllers\JenisBarangController@editjenisbarang')->name('editjenisbarang');
 Route::post('/jenisbarang/update/{id}', 'App\Http\Controllers\JenisBarangController@updatejenisbarang')->name('updatejenisbarang');
 Route::get('/jenisbarang/hapusjenisbarang/{id}', 'App\Http\Controllers\JenisBarangController@hapusjenisbarang')->name('hapusjenisbarang');
 
 //DATA ASET
 Route::POST('create', 'App\Http\Controllers\BarangController@create')->name('create');
-Route::get('/data-aset/form', [BarangController::class, 'formasettidakbergerak']); 
-Route::get('/data-aset', [BarangController::class, 'dataaset']); 
+Route::get('/data-aset/form', [BarangController::class, 'formasettidakbergerak']);
+Route::get('/data-aset', [BarangController::class, 'dataaset']);
 Route::get('/data-aset/edit/{id}', 'App\Http\Controllers\BarangController@editdataaset')->name('editdataaset');
 Route::post('/data-aset/update/{id}', 'App\Http\Controllers\BarangController@update')->name('update');
 Route::get('/data-aset/hapusdataaset/{id}', 'App\Http\Controllers\BarangController@hapusdataaset')->name('hapusdataaset');
 
 //DATA ASET BERGERAK
 // Route::POST('create', 'App\Http\Controllers\BarangController@create')->name('create');
-Route::get('/data-asetbergerak/form', [BarangController::class, 'formasetbergerak']); 
-Route::get('/data-asetbergerak', [BarangController::class, 'dataasetbergerak']); 
+Route::get('/data-asetbergerak/form', [BarangController::class, 'formasetbergerak']);
+Route::get('/data-asetbergerak', [BarangController::class, 'dataasetbergerak']);
 Route::get('/data-asetbergerak/edit/{id}', 'App\Http\Controllers\BarangController@editasetbergerak')->name('editasetbergerak');
 Route::post('/data-asetbergerak/update/{id}', 'App\Http\Controllers\BarangController@update')->name('data-asetbergerak.update');
 Route::get('/data-asetbergerak/hapus/{id}', 'App\Http\Controllers\BarangController@hapusasetbergerak')->name('hapusasetbergerak');
 
 //DATA ASET PERALATAN
 // Route::POST('create', 'App\Http\Controllers\BarangController@create')->name('create');
-Route::get('/data-peralatan/form', [BarangController::class, 'formperalatan']); 
-Route::get('/data-peralatan', [BarangController::class, 'dataasetperalatan']); 
+Route::get('/data-peralatan/form', [BarangController::class, 'formperalatan']);
+Route::get('/data-peralatan', [BarangController::class, 'dataasetperalatan']);
 Route::get('/data-peralatan/edit/{id}', 'App\Http\Controllers\BarangController@editperalatan')->name('editperalatan');
 Route::post('/data-peralatan/update/{id}', 'App\Http\Controllers\BarangController@update')->name('update');
 Route::get('/data-peralatan/hapus/{id}', 'App\Http\Controllers\BarangController@hapusperalatan')->name('hapusperalatan');
 
 //DATA ASET PERLENGKAPAN
 // Route::POST('create', 'App\Http\Controllers\BarangController@create')->name('create');
-Route::get('/data-perlengkapan/form', [BarangController::class, 'formperlengkapan']); 
-Route::get('/data-perlengkapan', [BarangController::class, 'dataasetperlengkapan']); 
+Route::get('/data-perlengkapan/form', [BarangController::class, 'formperlengkapan']);
+Route::get('/data-perlengkapan', [BarangController::class, 'dataasetperlengkapan']);
 Route::get('/data-perlengkapan/edit/{id}', 'App\Http\Controllers\BarangController@editperlengkapan')->name('editperlengkapan');
 Route::post('/data-perlengkapan/update/{id}', 'App\Http\Controllers\BarangController@update')->name('update');
 Route::get('/data-perlengkapan/hapus/{id}', 'App\Http\Controllers\BarangController@hapusperlengkapan')->name('hapusperlengkapan');
 
 //PENCATATAN STOK MASUK
 Route::POST('inputstokmasuk', 'App\Http\Controllers\BarangMasukController@inputstokmasuk')->name('inputstokmasuk');
-Route::get('/barang-masuk/form', [BarangMasukController::class, 'index']); 
-Route::get('/barang-masuk', [BarangMasukController::class, 'barangmasuk']); 
+Route::get('/barang-masuk/form', [BarangMasukController::class, 'index']);
+Route::get('/barang-masuk', [BarangMasukController::class, 'barangmasuk']);
 Route::get('/barang-masuk/edit/{id}', 'App\Http\Controllers\BarangMasukController@editbarangmasuk')->name('editbarangmasuk');
 Route::post('/barang-masuk/update/{id}', 'App\Http\Controllers\BarangMasukController@updatebarangmasuk')->name('updatebarangmasuk');
 Route::get('/barang-masuk/hapus/{id}', 'App\Http\Controllers\BarangMasukController@hapusbarangmasuk')->name('hapusbarangmasuk');
@@ -254,8 +254,8 @@ Route::get('/barang-masuk/status_masuk/{id}', 'App\Http\Controllers\BarangMasukC
 
 //PENCATATAN STOK/BARANG KELUAR
 Route::POST('inputbarangkeluar', 'App\Http\Controllers\BarangKeluarController@inputbarangkeluar')->name('inputbarangkeluar');
-Route::get('/barang-keluar/form', [BarangKeluarController::class, 'index']); 
-Route::get('/barang-keluar', [BarangKeluarController::class, 'barangkeluar']); 
+Route::get('/barang-keluar/form', [BarangKeluarController::class, 'index']);
+Route::get('/barang-keluar', [BarangKeluarController::class, 'barangkeluar']);
 Route::get('/barang-keluar/edit/{id}', 'App\Http\Controllers\BarangKeluarController@editbarangkeluar')->name('editbarangkeluar');
 Route::post('/barang-keluar/update/{id}', 'App\Http\Controllers\BarangKeluarController@updatebarangkeluar')->name('updatebarangkeluar');
 Route::get('/barang-keluar/hapus/{id}', 'App\Http\Controllers\BarangKeluarController@hapusbarangkeluar')->name('hapusbarangkeluar');
@@ -264,7 +264,7 @@ Route::get('/barang-keluar/status_keluar/{id}', 'App\Http\Controllers\BarangKelu
 
 //PEMINJAMAN//
 Route::POST('inputpeminjaman', 'App\Http\Controllers\PeminjamanController@create')->name('inputpeminjaman');
-Route::get('/peminjaman/form', [PeminjamanController::class, 'index']); 
+Route::get('/peminjaman/form', [PeminjamanController::class, 'index']);
 
 Route::get('/peminjaman/edit/{id}', 'App\Http\Controllers\PeminjamanController@editpeminjaman')->name('editpeminjaman');
 Route::post('/peminjaman/update/{id}', 'App\Http\Controllers\PeminjamanController@updatepeminjaman')->name('updatepeminjaman');
@@ -277,41 +277,41 @@ Route::get('/status_pengajuan/{kode_peminjaman}', 'App\Http\Controllers\Peminjam
 Route::get('/status_batal/{kode_peminjaman}', 'App\Http\Controllers\PeminjamanController@status_batal');
 Route::get('/status_barangdiambil/{kode_peminjaman}', 'App\Http\Controllers\PeminjamanController@status_barangdiambil');
 Route::get('/status_kembali/{kode_peminjaman}', 'App\Http\Controllers\PeminjamanController@status_kembali');
-Route::get('/peminjaman/konfirmasi/{id}', [PeminjamanController::class, 'detail_konfirmasi']); 
- 
+Route::get('/peminjaman/konfirmasi/{id}', [PeminjamanController::class, 'detail_konfirmasi']);
+
 //RIWAYAT PEMINJAM staff
-Route::get('/staff/peminjaman', [PeminjamanController::class, 'peminjamanstaff']); 
-Route::get('/staff/riwayat', [PeminjamanController::class, 'riwayatstaff']); 
-Route::get('/download/{surat_pinjam}', [PeminjamanController::class, 'download']); 
-Route::get('/detailbarang/{id}', [PeminjamanController::class, 'detail_barang']); 
-Route::get('/detailriwayat/{id}', [PeminjamanController::class, 'detail_riwayat']); 
+Route::get('/staff/peminjaman', [PeminjamanController::class, 'peminjamanstaff']);
+Route::get('/staff/riwayat', [PeminjamanController::class, 'riwayatstaff']);
+Route::get('/download/{surat_pinjam}', [PeminjamanController::class, 'download']);
+Route::get('/detailbarang/{id}', [PeminjamanController::class, 'detail_barang']);
+Route::get('/detailriwayat/{id}', [PeminjamanController::class, 'detail_riwayat']);
 
 
 
 //RIWAYAT PEMINJAM admin
-Route::get('/peminjaman/peminjaman', [PeminjamanController::class, 'peminjamanadmin']); 
+Route::get('/peminjaman/peminjaman', [PeminjamanController::class, 'peminjamanadmin']);
 Route::get('/peminjaman/riwayat', [PeminjamanController::class, 'riwayatadmin']);
-Route::get('/detailbarangadmin/{id}', [PeminjamanController::class, 'detail_barang_admin']);  
-Route::get('/detailriwayatadmin/{id}', [PeminjamanController::class, 'detail_riwayat_admin']);  
+Route::get('/detailbarangadmin/{id}', [PeminjamanController::class, 'detail_barang_admin']);
+Route::get('/detailriwayatadmin/{id}', [PeminjamanController::class, 'detail_riwayat_admin']);
 
 
 //RIWAYAT PEMINJAM kepala unit
-Route::get('/kepalaunit/pengajuan', [PeminjamanController::class, 'pengajuan']); 
-Route::get('/detailpengajuan/{id}', [PeminjamanController::class, 'detail_pengajuan']); 
+Route::get('/kepalaunit/pengajuan', [PeminjamanController::class, 'pengajuan']);
+Route::get('/detailpengajuan/{id}', [PeminjamanController::class, 'detail_pengajuan']);
 
 
 //PENCATATAN STOK/BARANG KELUAR kepala unit
-Route::get('/pencatatan/barangkeluar', [BarangKeluarController::class, 'databarangkeluar']); 
+Route::get('/pencatatan/barangkeluar', [BarangKeluarController::class, 'databarangkeluar']);
 
 //PENCATATAN STOK/BARANG MASUK kepala unit
-Route::get('/pencatatan/barangmasuk', [BarangMasukController::class, 'databarangmasuk']); 
+Route::get('/pencatatan/barangmasuk', [BarangMasukController::class, 'databarangmasuk']);
 
 //DATA ASET kepala unit dan staff
 Route::get('/cekdata', [BarangController::class, 'cekdata']);
-Route::get('/aset/bergerak', [BarangController::class, 'asetbergerak']);  
-Route::get('/aset/tidakbergerak', [BarangController::class, 'asettidakbergerak']); 
-Route::get('/aset/peralatan', [BarangController::class, 'asetperalatan']); 
-Route::get('/aset/perlengkapan', [BarangController::class, 'asetperlengkapan']); 
+Route::get('/aset/bergerak', [BarangController::class, 'asetbergerak']);
+Route::get('/aset/tidakbergerak', [BarangController::class, 'asettidakbergerak']);
+Route::get('/aset/peralatan', [BarangController::class, 'asetperalatan']);
+Route::get('/aset/perlengkapan', [BarangController::class, 'asetperlengkapan']);
 
 //LAPORAN
 Route::get('/laporan/asetbergerak', [BarangController::class, 'laporanasetbergerak']);
@@ -337,19 +337,5 @@ Route::get('/laporanbarangkeluar/{start}/{end}', 'App\Http\Controllers\BarangKel
 //STATUS USER
 Route::get('/ubah/status/{id}', 'App\Http\Controllers\UserController@ubahstatus');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//SELECT 2 Barang
+Route::get('/barang/select2', [BarangController::class, 'select2Barang'])->name('select.barang');
