@@ -502,8 +502,10 @@ class BarangController extends Controller
     {
         $id = $request->id ?? [];
 
-        return Barang::where('spesifikasi', 'like', '%' . $request->q . '%')
-            ->whereNotIn('id', $id)
+        return Barang::select('barangs.id', DB::raw('CONCAT(kode," - ", jenis_barang ," - ",spesifikasi) as spesifikasi'))
+            ->where(DB::raw('CONCAT(kode," - ", jenis_barang ," - ",spesifikasi)'), 'like', '%' . $request->q . '%')
+            ->join('jenis_barangs', 'jenis_barangs.id', '=', 'barangs.jenis_barangs_id')
+            ->whereNotIn('barangs.id', $id)
             ->where('jumlah', '>', 0)
             ->whereIn('jenis_asets_id', [1, 3, 4])
             ->get();

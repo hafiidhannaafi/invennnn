@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
@@ -16,18 +17,22 @@
 
     <script>
         var next = 0
+        var total = 1
         var notIn = []
         $(function() {
             
             $(document).on('click', '.btn-add', function(e) {
                 e.preventDefault();
-                $('#btn'+next).removeClass('btn-add').addClass('btn-remove')
+
+                if (total <= 4 ) {
+                    $('#btn'+next).removeClass('btn-add').addClass('btn-remove')
                     .removeClass('btn-success').addClass('btn-danger')
                     .html('<i class="fa fa-minus" aria-hidden="true">-</i>')
 
-                next++
+                    next++
+                    total++
 
-                $('#add-barang').append(`<div class="row entry my-2">
+                    $('#add-barang').append(`<div class="row entry my-2">
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <select
@@ -52,52 +57,47 @@
                                         </button>
                                     </div>
                                 </div>`)
-                // var controlForm = $(this).closest('.fvrduplicate'),
-                //     currentEntry = $(this).parents('.entry:first'),
-                //     newEntry = $(currentEntry.clone()).appendTo(controlForm);
-                //     console.log(controlForm)
+                
 
-                //     next++
-
-
-                // newEntry.find('select').removeAttr('id').attr('id','barangs_id'+next).removeAttr('data-select2-id').attr('data-select2-id','select2-data-barangs_id'+next);
-                // newEntry.find('option').remove()
-                // newEntry.find('select').remove();
-
-                $('#barangs_id'+next).select2({
-                theme: 'bootstrap-5',
-                cache: true,
-                placeholder: 'Pilih Barang',
-                ajax: {
-                    url: '{!! route("select.barang") !!}',
-                    dataType: 'json',
-                    delay: 400,
-                    data: function(params) {
-                        return {
-                            q: $.trim(params.term),
-                            id:notIn
-                        };
-                    },
-                    processResults: function(data) {
-                        return {
-                            results: $.map(data, function(item) {
+                    $('#barangs_id'+next).select2({
+                        theme: 'bootstrap-5',
+                        cache: true,
+                        placeholder: 'Pilih Barang',
+                        ajax: {
+                            url: '{!! route("select.barang") !!}',
+                            dataType: 'json',
+                            delay: 400,
+                            data: function(params) {
                                 return {
-                                    text: item.spesifikasi,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    },
-                },
-            });
-
-                // controlForm.find('.entry:not(:last) .btn-add')
-                //     .removeClass('btn-add').addClass('btn-remove')
-                //     .removeClass('btn-success').addClass('btn-danger')
-                //     .html('<i class="fa fa-minus" aria-hidden="true">-</i>');
+                                    q: $.trim(params.term),
+                                    id:notIn
+                                };
+                            },
+                            processResults: function(data) {
+                                return {
+                                    results: $.map(data, function(item) {
+                                        return {
+                                            text: item.spesifikasi,
+                                            id: item.id
+                                        }
+                                    })
+                                };
+                            },
+                        },
+                    });
+                }else{
+                    Swal.fire({
+                        title: 'Mohon Maaf!',
+                        text: 'Anda Tidak Dapat Menambah Barang Lagi',
+                        icon: 'error',
+                        // confirmButtonText: 'Cool'
+                    })
+                }
+                
 
             }).on('click', '.btn-remove', function(e) {
                 $(this).closest('.entry').remove();
+                total--
                 return false;
             });
 
