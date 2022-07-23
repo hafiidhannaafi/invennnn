@@ -26,13 +26,24 @@ class HomeController extends Controller
          $jenisbarang = JenisBarang::all();
          $datasatuan = Satuan::all();
          $inputbarang = Barang::all();
-         $peminjaman = DetailPeminjaman::all();
-           $inputbarangs = Barang::where( 'id', 1)->get();
+         $detailpeminjaman = DetailPeminjaman::all();
+        $peminjaman = Peminjaman::all();
         $role=Auth::user()->roles_id;
         
         // return $inputbarang;
         if($role=='1')
         {
+            $jumlah = Barang::count();
+            $asetbergerak = Barang::where('jenis_asets_id' , 1)->count();
+            $asettidakbergerak = Barang::where('jenis_asets_id' , 2)->count();
+            $asetperlengkapan = Barang::where('jenis_asets_id' , 4)->count();
+            $asetperalatan = Barang::where('jenis_asets_id' , 3)->count();
+             $pengajuan= DetailPeminjaman::where('status_konfirmasis_id' , 1)->count();
+              $disetujui= DetailPeminjaman::where('status_konfirmasis_id' , 2 && 'status_peminjamans_id' , 2 )->count();
+              $dikembalikan= DetailPeminjaman::where('status_konfirmasis_id' , 2 && 'status_peminjamans_id' , 3 )->count();
+              $ditolak= DetailPeminjaman::where('status_konfirmasis_id' , 3)->count();
+               $dibatalkan= DetailPeminjaman::where('status_konfirmasis_id' , 5)->count();
+              $peminjaman =Peminjaman::count();
             return view('admin',[
              "title" => "perlengkapan",
              "jenisbarang" => $jenisbarang,
@@ -40,8 +51,18 @@ class HomeController extends Controller
              "dataasalperolehan" => $dataasalperolehan,
              "datasatuan" =>$datasatuan,
              "inputbarang"=> $inputbarang,
-              "inputbarangs"=> $inputbarangs,
-             "peminjaman"=> $peminjaman
+            "detailpeminjaman"=> $detailpeminjaman,
+             "peminjaman"=> $peminjaman,
+              "pengajuan"=>$pengajuan,
+              "disetujui"=>$disetujui,
+              "dikembalikan"=> $dikembalikan,
+              "ditolak"=>$ditolak,
+             "dibatalkan" =>$dibatalkan,
+             "jumlah" => $jumlah,
+             "asetbergerak" => $asetbergerak,
+             "asettidakbergerak" => $asettidakbergerak,
+             "asetperlengkapan" => $asetperlengkapan,
+             "asetperalatan" => $asetperalatan
          ]);
         }
 

@@ -25,6 +25,42 @@
                 <div class="col-lg-8">
                     <div class="row">
 
+
+
+                        <!-- Revenue Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card revenue-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Jumlah jenis Barang<span></span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-cart-check"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>
+
+                                                {{ $jumlah }}
+                                            </h6>
+                                            <span class="text-success small pt-1 fw-bold">{{ $asetbergerak }}</span> <span
+                                                class="text-muted small pt-2 ps-1">Aset bergerak</span><br>
+                                            <span class="text-success small pt-1 fw-bold">{{ $asettidakbergerak }}</span>
+                                            <span class="text-muted small pt-2 ps-1">Aset tidak bergerak</span><br>
+                                            <span class="text-success small pt-1 fw-bold">{{ $asetperalatan }}</span> <span
+                                                class="text-muted small pt-2 ps-1">Aset Peralatan</span><br>
+                                            <span class="text-success small pt-1 fw-bold">{{ $asetperlengkapan }}</span>
+                                            <span class="text-muted small pt-2 ps-1">Aset Perlengakapan</span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Revenue Card -->
+
                         <!-- Sales Card -->
                         <div class="col-xxl-4 col-md-6">
                             <div class="card info-card sales-card">
@@ -35,7 +71,7 @@
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-cart"></i>
+                                            <i class="bi bi-cart-check"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6> @php
@@ -45,6 +81,80 @@
                                                 }
                                                 echo $varjumlah;
                                             @endphp </h6>
+                                            <span class="text-success small pt-1 fw-bold"><?php
+                                            $varjumlah = 0;
+                                            foreach ($inputbarang as $ib) {
+                                                if ($ib->jenis_asets_id == 1) {
+                                                    $varjumlah += $ib->jumlah;
+                                                }
+                                            }
+                                            echo $varjumlah;
+                                            ?></span> <span
+                                                class="text-muted small pt-2 ps-1">Aset bergerak</span><br>
+                                            <span class="text-success small pt-1 fw-bold"><?php
+                                            $varjumlah = 0;
+                                            foreach ($inputbarang as $ib) {
+                                                if ($ib->jenis_asets_id == 2) {
+                                                    $varjumlah += $ib->jumlah;
+                                                }
+                                            }
+                                            echo $varjumlah;
+                                            ?></span> <span
+                                                class="text-muted small pt-2 ps-1">Aset tidak bergerak</span><br>
+                                            <span class="text-success small pt-1 fw-bold"><?php
+                                            $varjumlah = 0;
+                                            foreach ($inputbarang as $ib) {
+                                                if ($ib->jenis_asets_id == 3) {
+                                                    $varjumlah += $ib->jumlah;
+                                                }
+                                            }
+                                            echo $varjumlah;
+                                            ?></span> <span
+                                                class="text-muted small pt-2 ps-1">Aset Peralatan</span><br>
+                                            <span class="text-success small pt-1 fw-bold"><?php
+                                            $varjumlah = 0;
+                                            foreach ($inputbarang as $ib) {
+                                                if ($ib->jenis_asets_id == 4) {
+                                                    $varjumlah += $ib->jumlah;
+                                                }
+                                            }
+                                            echo $varjumlah;
+                                            ?></span> <span
+                                                class="text-muted small pt-2 ps-1">Aset Perlengakapan</span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Sales Card -->
+
+                        <!-- Sales Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card sales-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Pengajuan Pinjam</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-file-arrow-up-fill"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6> {{ $peminjaman }}</h6>
+                                            <span class="text-success small pt-1 fw-bold">{{ $pengajuan }}</span> <span
+                                                class="text-muted small pt-2 ps-1">Pengajuan</span><br>
+                                            <span class="text-success small pt-1 fw-bold">{{ $disetujui }}</span> <span
+                                                class="text-muted small pt-2 ps-1">Disetujui & dipinjam</span><br>
+                                            <span class="text-success small pt-1 fw-bold">{{ $ditolak }}</span> <span
+                                                class="text-muted small pt-2 ps-1">Ditolak</span><br>
+                                            <span class="text-success small pt-1 fw-bold">{{ $dibatalkan }}</span> <span
+                                                class="text-muted small pt-2 ps-1">Dibatalkan</span><br>
+                                            <span class="text-success small pt-1 fw-bold"> {{ $dikembalikan }}</span> <span
+                                                class="text-muted small pt-2 ps-1">Dikembalikan</span>
+
 
 
                                         </div>
@@ -59,23 +169,28 @@
                             <div class="card info-card revenue-card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Jumlah jenis Barang<span></span></h5>
+                                    <h5 class="card-title">Total Jumlah Barang yang dipinjam<span></span></h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-currency-dollar"></i>
+                                            <i class="bi bi-cart"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>
 
-                                                <?php
-                                                
-                                                $inputbarangs->count();
-                                                ?></h6>
 
-                                            <span class="text-success small pt-1 fw-bold">
 
+
+                                            </h6>
+                                            <span class="text-success small pt-1 fw-bold">12</span> <span
+                                                class="text-muted small pt-2 ps-1">Aset bergerak</span><br>
+                                            <span class="text-success small pt-1 fw-bold">12</span> <span
+                                                class="text-muted small pt-2 ps-1">Aset tidak bergerak</span><br>
+                                            <span class="text-success small pt-1 fw-bold">12</span> <span
+                                                class="text-muted small pt-2 ps-1">Aset Peralatan</span><br>
+                                            <span class="text-success small pt-1 fw-bold">12</span> <span
+                                                class="text-muted small pt-2 ps-1">Aset Perlengakapan</span>
 
 
                                         </div>
@@ -88,7 +203,7 @@
 
 
                         <!-- Reports -->
-                        <div class="col-12">
+                        {{-- <div class="col-12">
                             <div class="card">
 
 
@@ -143,7 +258,7 @@
                                 </div>
 
                             </div>
-                        </div><!-- End Reports -->
+                        </div><!-- End Reports --> --}}
 
 
                     </div>
