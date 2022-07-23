@@ -453,15 +453,7 @@ public function status_barangdiambil($kode_peminjaman)
         return redirect()->back()->with('success', 'Peminjaman Selesai & Barang telah dikembalikan ');
     }
 
-    // public function hapuspeminjaman($kode_peminjaman)
-    //     {
-    //     foreach (DetailPeminjaman::where('kode_peminjaman', $kode_peminjaman))->get();
-    //     {
-    //         $peminjaman= Peminjaman::find($id);
-    //         $peminjaman->delete();
-    //     }
-    //         return redirect('/peminjaman/peminjaman')->with('success', 'Data Berhasil Dihapus!');
-    //     }
+   
 
 
      public function hapuspeminjaman($id)

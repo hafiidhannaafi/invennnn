@@ -105,11 +105,11 @@
                 return false;
             });
 
-            // $('#tgl_pinjam').on('input', function() {
-            //     $('#tgl_kembali').attr('min', this.value);
+            // $('#datefield').on('input', function() {
+            //     $('#datefield2').attr('min', this.value);
             // });
-            // $('#tgl_kembali').on('input', function() {
-            //     $('#tgl_pinjam').attr('max', this.value);
+            // $('#datefield2').on('input', function() {
+            //     $('#datefield').attr('max', this.value);
             // });
 
 

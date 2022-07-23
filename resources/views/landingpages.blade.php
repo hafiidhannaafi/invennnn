@@ -198,8 +198,8 @@
                         <div class="box">
                             <h3 style="color: #4a4df6;">Aset Peralatan</h3>
 
-                            <img src="{{ asset('landingpages/assets/img/pricing-business.png') }}"
-                                class="img-fluid" alt="">
+                            <img src="{{ asset('landingpages/assets/img/pricing-business.png') }}" class="img-fluid"
+                                alt="">
                             <ul>
 
                                 <li>seperti peralatan mesin, perkantoran</li>
@@ -213,8 +213,8 @@
                         <div class="box">
                             <h3 style="color: #4a4df6;">Aset Perlengkapan</h3>
 
-                            <img src="{{ asset('landingpages/assets/img/pricing-ultimate.png') }}"
-                                class="img-fluid" alt="">
+                            <img src="{{ asset('landingpages/assets/img/pricing-ultimate.png') }}" class="img-fluid"
+                                alt="">
                             <ul>
 
                                 <li>seperti perlengkapan kantor, administrasi</li>
@@ -242,9 +242,9 @@
 
                 <div class="row">
 
-                    <div class="col-lg-6">
-                        <img src="{{ asset('landingpages/assets/img/features.png') }}" class="img-fluid"
-                            alt="">
+                    <div class="col-lg-3">
+                        {{-- <img src="{{ asset('landingpages/assets/img/features.jpeg') }}" class="img-fluid"
+                            alt=""> --}}
                     </div>
 
                     <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -301,7 +301,7 @@
                             <h3>Tata Cara Peminjaman</h3>
 
                             <!-- Tabs -->
-                            <ul class="nav nav-pills mb-3">
+                            <ul class="nav nav-pills mb-6">
                                 <li>
                                     <a class="nav-link active" data-bs-toggle="pill" href="#tab1">Peminjaman &
                                         Keperluan Projek</a>
@@ -318,7 +318,7 @@
                             <!-- Tab Content -->
                             <div class="tab-content">
 
-                                <div class="tab-pane fade show active" id="tab1">
+                                <div class="tab-pane fade show active" id="tab1"><br>
 
                                     <h4>1. Login / Sign Up</h4>
                                     <p>Karyawan yang akan meminjam barang untuk keperluan proyek kantor/ pribadi login
@@ -331,8 +331,8 @@
                                     <p> Mengisi data peminjaman barang serta mengupload surat pengantar. Diharapkan
                                         karyawan yang hendak staff mengajukan peminjaman jauh-jauh hari sebelum
                                         penggunaan barang <br>
-                                       note : peminjaman barang bergerak, elektronik max 1 item per jenis barang</p>
-                                   
+                                        note : peminjaman barang bergerak, elektronik max 1 item per jenis barang</p>
+
                                     <h4>4. Menunggu status persetujuan</h4>
                                     <p> Memantau status pengajuan untuk
                                         mengetahui pengajuan diterima atau ditolak. Memerlukan proses 3-5 hari</p>
@@ -353,13 +353,13 @@
 
 
 
-                                <div class="tab-pane fade show" id="tab2">
+                                <div class="tab-pane fade show" id="tab2"><br>
+
 
                                     <h4>1. Karyawan Mengembalikan Barang ke kantor</h4>
                                     <p> karyawan mengembalikan barang sesuai tanggal yang ditentukan</p>
-                                    <h4>2. Admin mengecek kondisi barang dan konfirmasi status pengembalian</h4>
-                                    <p> Apabila telat pengembalian dan kondisi barang ditemukan kerusakan akan diberikan
-                                        sanksi</p>
+                                    <h4>2. Admin mengecek kondisi barang dan konfirmasi status pengembalian</h4><br>
+
                                     <h4>3. Peminjaman selesai</h4>
                                     {{-- <p> </p>
                                     <h4>4. Perpanjangan</h4>
