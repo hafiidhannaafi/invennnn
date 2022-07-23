@@ -14,7 +14,7 @@ class CreateStatusKonfirmasisTable extends Migration
     public function up()
     {
         Schema::create('status_konfirmasis', function (Blueprint $table) {
-            $table->id();
+          $table->id();
             $table->string('status_konfirmasi');
             $table->timestamps();
         });

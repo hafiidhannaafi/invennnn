@@ -455,11 +455,26 @@ public function status_barangdiambil($kode_peminjaman)
 
     // public function hapuspeminjaman($kode_peminjaman)
     //     {
-    //     foreach Peminjaman::where('kode_peminjaman', $kode_peminjaman)->get()
+    //     foreach (DetailPeminjaman::where('kode_peminjaman', $kode_peminjaman))->get();
+    //     {
     //         $peminjaman= Peminjaman::find($id);
     //         $peminjaman->delete();
+    //     }
     //         return redirect('/peminjaman/peminjaman')->with('success', 'Data Berhasil Dihapus!');
     //     }
 
 
+     public function hapuspeminjaman($id)
+    {
+        $peminjaman= Peminjaman::find($id);
+        // dd($peminjaman);
+        foreach(DetailPeminjaman::where('kode_peminjaman', $peminjaman->kode_peminjaman)->get() as $dt){
+            $dt->delete($dt);
+            
+        }
+        $peminjaman->delete($peminjaman);
+        return redirect('/peminjaman/peminjaman')->with('success', 'Data Berhasil Dihapus!');
+        
+
+    }
 }

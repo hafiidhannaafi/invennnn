@@ -107,9 +107,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{-- <a href="/peminjaman/edit/{{ $data->id }}" type="button"
+                                            <a href="/peminjaman/edit/{{ $data->id }}" type="button"
                                                 class="btn btn-sm" style="background-color: #05b3c3; color:#FFFFFF"><i
-                                                    class="bi bi-pencil"></i></a> --}}
+                                                    class="bi bi-pencil"></i></a>
                                             <a href="/peminjaman/hapus/{{ $data->id }}"
                                                 onclick="return confirm('Hapus Data?')" type="button"
                                                 class="btn btn-danger btn-sm"><i class="bi bi-trash delete"></i></a>

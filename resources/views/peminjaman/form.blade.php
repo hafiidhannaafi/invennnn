@@ -1,8 +1,12 @@
 @extends('layouts.master')
 @section('content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -20,14 +24,14 @@
         var total = 1
         var notIn = []
         $(function() {
-            
+
             $(document).on('click', '.btn-add', function(e) {
                 e.preventDefault();
 
-                if (total <= 4 ) {
-                    $('#btn'+next).removeClass('btn-add').addClass('btn-remove')
-                    .removeClass('btn-success').addClass('btn-danger')
-                    .html('<i class="fa fa-minus" aria-hidden="true">-</i>')
+                if (total <= 4) {
+                    $('#btn' + next).removeClass('btn-add').addClass('btn-remove')
+                        .removeClass('btn-success').addClass('btn-danger')
+                        .html('<i class="fa fa-minus" aria-hidden="true">-</i>')
 
                     next++
                     total++
@@ -57,20 +61,20 @@
                                         </button>
                                     </div>
                                 </div>`)
-                
 
-                    $('#barangs_id'+next).select2({
+
+                    $('#barangs_id' + next).select2({
                         theme: 'bootstrap-5',
                         cache: true,
                         placeholder: 'Pilih Barang',
                         ajax: {
-                            url: '{!! route("select.barang") !!}',
+                            url: '{!! route('select.barang') !!}',
                             dataType: 'json',
                             delay: 400,
                             data: function(params) {
                                 return {
                                     q: $.trim(params.term),
-                                    id:notIn
+                                    id: notIn
                                 };
                             },
                             processResults: function(data) {
@@ -85,7 +89,7 @@
                             },
                         },
                     });
-                }else{
+                } else {
                     Swal.fire({
                         title: 'Mohon Maaf!',
                         text: 'Anda Tidak Dapat Menambah Barang Lagi',
@@ -93,7 +97,7 @@
                         // confirmButtonText: 'Cool'
                     })
                 }
-                
+
 
             }).on('click', '.btn-remove', function(e) {
                 $(this).closest('.entry').remove();
@@ -101,38 +105,40 @@
                 return false;
             });
 
-            $('#tgl_pinjam').on('input', function() {
-                $('#tgl_kembali').attr('min', this.value);
-            });
-            $('#tgl_kembali').on('input', function() {
-                $('#tgl_pinjam').attr('max', this.value);
-            });
+            // $('#tgl_pinjam').on('input', function() {
+            //     $('#tgl_kembali').attr('min', this.value);
+            // });
+            // $('#tgl_kembali').on('input', function() {
+            //     $('#tgl_pinjam').attr('max', this.value);
+            // });
 
-            
+
         });
     </script>
 
 
     <script>
         function barangTerpilih(el) {
-            notIn = $("select[name='barangs_id[]']").map(function(){return $(this).val();}).get();
+            notIn = $("select[name='barangs_id[]']").map(function() {
+                return $(this).val();
+            }).get();
             // console.log(notIn)
         }
 
-        $(function () {
+        $(function() {
 
             $('#barangs_id0').select2({
                 theme: 'bootstrap-5',
                 cache: true,
                 placeholder: 'Pilih Barang',
                 ajax: {
-                    url: '{!! route("select.barang") !!}',
+                    url: '{!! route('select.barang') !!}',
                     dataType: 'json',
                     delay: 400,
                     data: function(params) {
                         return {
                             q: $.trim(params.term),
-                            id:notIn
+                            id: notIn
                         };
                     },
                     processResults: function(data) {
@@ -153,7 +159,7 @@
                 cache: true,
                 placeholder: 'Pilih Barang',
                 ajax: {
-                    url: '{!! route("select.barang") !!}',
+                    url: '{!! route('select.barang') !!}',
                     dataType: 'json',
                     delay: 400,
                     data: function(params) {
@@ -206,6 +212,8 @@
             });
         });
     </script>
+
+
 
 
 
@@ -276,8 +284,8 @@
                         <div class="col-sm-10">
 
 
-                            <input type="hidden" id="validationCustom01" name="users_id"
-                                value=" {{ auth()->user()->id }}" class="form-control" required readonly>
+                            <input type="hidden" id="validationCustom01" name="users_id" value=" {{ auth()->user()->id }}"
+                                class="form-control" required readonly>
 
 
                             <div class="invalid-feedback">
@@ -352,7 +360,7 @@
                     <div class="row mb-3">
                         <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Peminjaman</label>
                         <div class="col-sm-10">
-                            <input type="date" id="tgl_pinjam" name="tgl_pinjam" class="form-control" required>
+                            <input type="date" id="datefield" name="tgl_pinjam" class="form-control" required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -362,7 +370,7 @@
                     <div class="row mb-3">
                         <label for="validationTooltip05" class="col-sm-2 col-form-label">Tgl Pengembalian</label>
                         <div class="col-sm-10">
-                            <input type="date" id="tgl_kembali" name="tgl_kembali" class="form-control" required>
+                            <input type="date" id="datefield2" name="tgl_kembali" class="form-control" required>
                             <div class="invalid-feedback">
                                 Harus di isi
                             </div>
@@ -432,14 +440,12 @@
                                 <div class="row entry my-2">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <select
-                                            onchange="barangTerpilih(this)"
-                                                class="form-control select2"
+                                            <select onchange="barangTerpilih(this)" class="form-control select2"
                                                 data-live-search="true" name="barangs_id[]" id="barangs_id0">
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-md-5">
                                         <input class="form-control form-control" value=" "
                                             id="jumlah_pinjam[] "name="jumlah_pinjam[]" type="number"
@@ -531,4 +537,20 @@
 
 
         </div>
+        <script>
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("datefield").setAttribute("min", today);
+            document.getElementById("datefield2").setAttribute("min", today);
+        </script>
     @endsection
